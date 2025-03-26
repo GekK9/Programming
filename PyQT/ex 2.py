@@ -44,7 +44,6 @@ class Window (QWidget):
         self.Div_label.move(325, 115)
 
         # numBoxes
-
         self.LCD_sum = QLCDNumber(self)
         self.LCD_sum.move(410, 20)   
 

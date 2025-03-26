@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QLabel, QLCDNumber, QLineEdit, QErrorMessage
 import sys
 
 class Window (QWidget):
-    def __init__    (self):
+    def __init__(self):
         super().__init__()
         self.initUI()
 

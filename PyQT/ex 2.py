@@ -73,11 +73,13 @@ class Window (QWidget):
         self.sub = (f"{float(self.FirstNum_textBox.text()) - float(self.SecondNum_textBox.text())}")
         self.mult = (f"{float(self.FirstNum_textBox.text()) * float(self.SecondNum_textBox.text())}")
 
-        if self.SecondNum_textBox.text() != 0:
-            self.div = (f"{float(self.FirstNum_textBox.text()) / float(self.SecondNum_textBox.text())}")
-        else: 
+        if self.SecondNum_textBox.text() == '0':
+            self.div = 'Error'
             self.Error = QErrorMessage()
             self.Error.showMessage("Деление на ноль!")
+            
+        else: 
+            self.div = (f"{float(self.FirstNum_textBox.text()) / float(self.SecondNum_textBox.text())}")
 
         self.LCD_sum.display(self.sum)
         self.LCD_sub.display(self.sub)

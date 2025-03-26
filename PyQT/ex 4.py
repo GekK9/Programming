@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtWidgets import QCheckBox
+from PyQt5.QtWidgets import QCheckBox, QLineEdit
 import sys
 
 class Window (QWidget):
@@ -15,6 +15,13 @@ class Window (QWidget):
         for i in range(4):
             check_box = QCheckBox(f"edit{i+1}", self)
             check_box.move(10, (i * 30) + 20)
+
+        for i in range(4):
+            input_boxes = QLineEdit(self)
+            input_boxes.setText(f"Поле edit{i+1}")
+            input_boxes.move(70, (i * 30) + 17)
+            input_boxes.resize(120, 20)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

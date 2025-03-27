@@ -8,10 +8,11 @@ class Window (QWidget):
         self.initUI()
 
     def initUI(self):
-        # window
+        # параметры окна
         self.setGeometry(300, 300, 300, 360)
         self.setWindowTitle('Order')
 
+        # создаем макеты
         self.main_layout = QVBoxLayout(self)
         self.order_box = QHBoxLayout()
         self.check_boxes = QVBoxLayout()
@@ -22,24 +23,23 @@ class Window (QWidget):
         self.cheque_box_widget.setStyleSheet("border: 2px solid grey; padding: 10px;")  
         self.cheque_box_widget.hide()
 
-
         self.main_layout.addLayout(self.order_box)
         self.main_layout.addWidget(self.cheque_box_widget)
         self.order_box.addLayout(self.check_boxes)
         self.order_box.addLayout(self.names)
+
         self.main_layout.addStretch()
-
-
 
         self.goods = {
             "100" : 'Чизбургер', "80": 'Гамбургер', "60": 'Кока-кола', "120" : 'Нагеттсы',
             "110": 'Картошка Фри', "40": 'Вода',
         }
+
         self.order_box.addStretch()
-        self.input_boxes = {
-            
-        }
+
+        self.input_boxes = {}
         
+        # выводим чекбоксы, их названия и поле для ввода количества    
         for price, name in self.goods.items():
             
             self.check_box = QCheckBox(f"{name}", self)
@@ -53,17 +53,12 @@ class Window (QWidget):
             self.names.addWidget(input_box)
             self.input_boxes[self.check_box] = (input_box, price)
             
-
         self.check_boxes.setSpacing(15)
         self.names.setSpacing(15)
-        
         self.names.addStretch()
 
         self.btn = QPushButton('Заказать')
         self.btn.clicked.connect(self.order)
-
-        self.check_boxes.addWidget(self.btn)
-        
         self.check_boxes.addWidget(self.btn)
         self.check_boxes.addStretch()
 
@@ -77,7 +72,6 @@ class Window (QWidget):
             if widget is not None:
                 widget.deleteLater()
                 
-        
         self.text = QLabel('Ваш заказ', self)
         self.text.setText('Ваш заказ:')
         self.text.setStyleSheet("border: 0px")
@@ -103,12 +97,11 @@ class Window (QWidget):
             self.cheque_box_widget.show()  # Показываем чек, если есть выбранные блюда
         else:
             self.cheque_box_widget.hide()  # Скрываем чек, если ничего не выбрано
-                
+            self.setGeometry(300, 300, 300, 360)
+
         self.cheque_box_layout.addStretch()
         
-
-
-
+    # поля ввода количества отключены при убранном чекбоксе   
     def count(self):
         for check_box, (input_box, price) in self.input_boxes.items():
             if check_box.isChecked():
